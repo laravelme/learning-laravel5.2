@@ -5,6 +5,20 @@ Route::get( '/', 'staticPagesController@index' );
 Route::get( '/about-us', 'staticPagesController@aboutUs' );
 Route::get( '/contact-us', 'staticPagesController@contactUs' );
 
+Route::get('/applications',function(){
+	$applications = \App\Application::all();
+	$output="";
+	foreach($applications as $application){
+		$output.= "<h1>". $application->name . "</h1><br>".
+	                     "<i>". $application->email ."</i><hr>";
+	}
+	return    $output;
+});
+Route::get('/applications-json',function(){
+	$applications = \App\Application::all();
+	return $applications;
+});
+
 /*
 |--------------------------------------------------------------------------
 | Application Routes
