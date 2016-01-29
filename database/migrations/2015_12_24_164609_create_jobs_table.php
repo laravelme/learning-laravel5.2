@@ -19,18 +19,12 @@ class CreateJobsTable extends Migration
             $table->string('address')->nullable();
             $table->unsignedInteger('region_id')->index();
             $table->unsignedTinyInteger('type')->default('0'); // 0: full-time, 1: part-time.
-            $table->unsignedInteger('category_id')->index();
+//            $table->unsignedInteger('category_id')->index(); // deprecated! since we'll use multi-cat.
             $table->text('description')->nullable();
             $table->string('apply')->nullable();
             $table->timestamp('expiration_date');
             $table->unsignedInteger('company_id')->index();
-            $table->string('video_url')->nullable();
-            $table->string('website');
-            $table->string('linkedin_username')->nullable();
-            $table->string('facebook_username')->nullable();
-            $table->string('googleplus_username')->nullable();
-            $table->string('twitter_username')->nullable();
-            $table->string('logo_filename');
+            // Other fields moved to companies table schema.
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
