@@ -3,5 +3,5 @@
 @section('title','About Us')
 
 @section('content')
-	<div class="title">About Us view</div>
+    <div class="title">Home view</div>
 @endsection
