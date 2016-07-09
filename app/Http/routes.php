@@ -1,9 +1,9 @@
 <?php
 
 
-Route::get( '/', 'staticPagesController@index' );
-Route::get( '/about-us', 'staticPagesController@aboutUs' );
-Route::get( '/contact-us', 'staticPagesController@contactUs' );
+Route::get( '/', 'fe\staticPagesController@index' );
+Route::get( '/about-us', 'fe\staticPagesController@aboutUs' );
+Route::get( '/contact-us', 'fe\staticPagesController@contactUs' );
 
 Route::get('/applications',function(){
 	$applications = \App\Application::all();
