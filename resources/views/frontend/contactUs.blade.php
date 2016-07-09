@@ -1,4 +1,4 @@
-@extends('master')
+@extends('templates.master')
 
 @section('title','Contact Us')
 

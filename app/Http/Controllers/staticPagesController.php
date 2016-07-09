@@ -7,11 +7,11 @@ use App\Http\Requests;
 class staticPagesController extends Controller {
 
 	public function index() {
-		return view( 'welcome' );
+		return view( 'frontend.index' );
 	}
 
 	public function aboutUs() {
-		return view( 'aboutUS' );
+		return view( 'frontend.aboutUS' );
 	}
 
 	public function contactUs() {
@@ -21,6 +21,6 @@ class staticPagesController extends Controller {
 في حال رغبتك في التقدم إلى عمل موجود مسبقاً في موقعنا اضغط على الزر المشابه لهذا الزر : التقدم لهذا العمل
 
 لأصحاب العمل الراغبين في إضافة فرصة عمل الرجاء الضغط هنا.";
-		return view( 'contactUs',compact('test','contactUsContent') );
+		return view( 'frontend.contactUs',compact('test','contactUsContent') );
 	}
 }
