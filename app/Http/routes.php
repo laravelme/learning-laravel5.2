@@ -1,35 +1,38 @@
 <?php
 
 
-Route::get( '/', 'fe\staticPagesController@index' );
-Route::get( '/about-us', 'fe\staticPagesController@aboutUs' );
-Route::get( '/contact-us', 'fe\staticPagesController@contactUs' );
+/*
+|--------------------------------------------------------------------------
+| Front-end Routes
+|--------------------------------------------------------------------------
+*/
+Route::group(
+    [
+        'middleware' => 'web',
+        'as'         => 'fe.',
+    ],
+    function () {
+        Route::auth();
+        Route::get('/', ['uses' => 'fe\staticPagesController@index', 'as' => 'index']);
+        Route::get('/home', ['uses' => 'fe\staticPagesController@index', 'as' => 'home']);
+        Route::get('/about-us', ['uses' => 'fe\staticPagesController@aboutUs', 'as' => 'about-us']);
+        Route::get('/contact-us', ['uses' => 'fe\staticPagesController@contactUs', 'as' => 'contact-us']);
+    }
+);
 
-Route::get('/applications',function(){
-	$applications = \App\Application::all();
-	$output="";
-	foreach($applications as $application){
-		$output.= "<h1>". $application->name . "</h1><br>".
-	                     "<i>". $application->email ."</i><hr>";
-	}
-	return    $output;
-});
-Route::get('/applications-json',function(){
-	$applications = \App\Application::all();
-	return $applications;
-});
 
 /*
 |--------------------------------------------------------------------------
-| Application Routes
+| Back-end Routes
 |--------------------------------------------------------------------------
-|
-| This route group applies the "web" middleware group to every route
-| it contains. The "web" middleware group is defined in your HTTP
-| kernel and includes session state, CSRF protection, and more.
-|
 */
-
-Route::group(['middleware' => ['web']], function () {
-	//
-});
+Route::group(
+    [
+        'prefix'     => 'be',
+        'as'         => 'be.', /* resources */
+        'middleware' => ['web', 'auth'],
+    ],
+    function () {
+        Route::get('/', ['uses' => 'be\BackendController@index', 'as' => 'index']);
+    }
+);
